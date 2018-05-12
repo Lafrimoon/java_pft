@@ -12,9 +12,25 @@ public class LengthCounter {
         System.out.println("Расчет через функцию");
         System.out.println("Расстояние между точками с координатами [" + start.x + ", " + start.y + "] и [" + finish.x + ", " + finish.y + "] равно: " + roadLength);
 
-        // расчет через метод класса, если объекты Point нужно определять отдельно
+        //расчет через метод класса Point
+        //те же координаты
+        start = new Point(-4, 2);
+        finish = new Point(5, -3);
 
-        start = new Point(-3, 2);
+        roadLength = start.distanceTo(finish);
+
+        System.out.println("Расчет через метод класса Point");
+        System.out.println("Расстояние между точками с координатами [" + start.x + ", " + start.y + "] и [" + finish.x + ", " + finish.y + "] равно: " + roadLength);
+        //другие координаты
+        start = new Point(0, 3);
+        finish = new Point(1, 2);
+
+        roadLength = start.distanceTo(finish);
+
+        System.out.println("Расстояние между точками с координатами [" + start.x + ", " + start.y + "] и [" + finish.x + ", " + finish.y + "] равно: " + roadLength);
+        // расчет через метод другого класса, если объекты Point нужно определять отдельно
+
+      /*  start = new Point(-3, 2);
         finish = new Point(5, -3);
 
         DistanceTwoPoints roadLengthClass = new DistanceTwoPoints(start, finish);
@@ -22,19 +38,7 @@ public class LengthCounter {
 
         System.out.println("Расчет через метод класса");
         System.out.println("Расстояние между точками с координатами [" + start.x + ", " + start.y + "] и [" + finish.x + ", " + finish.y + "] равно: " + roadLength);
-
-        //расчет через метод класса Point
-
-        start = new Point(0, 3);
-        finish = new Point(1, 2);
-
-        roadLength = start.distanceTo(finish);
-
-        System.out.println("Расчет через метод класса Point");
-        System.out.println("Расстояние между точками с координатами [" + start.x + ", " + start.y + "] и [" + finish.x + ", " + finish.y + "] равно: " + roadLength);
-
-
-
+*/
 
     }
 
