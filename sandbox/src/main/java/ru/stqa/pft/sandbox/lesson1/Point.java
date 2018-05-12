@@ -1,10 +1,11 @@
-package lesson1;
+package ru.stqa.pft.sandbox.lesson1;
 
 public class Point {
 
     public double x;
     public double y;
 
+    //конструктор
     public Point(double x, double y){
         this.x = x;
         this.y = y;

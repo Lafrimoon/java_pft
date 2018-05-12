@@ -1,4 +1,4 @@
-package lesson1;
+package ru.stqa.pft.sandbox.lesson1;
 
 public class LengthCounter {
 
