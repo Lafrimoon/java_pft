@@ -4,16 +4,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import static org.testng.Assert.*;
 
 import java.util.concurrent.TimeUnit;
-import java.util.Date;
-import java.io.File;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
-import static org.openqa.selenium.OutputType.*;
 
 public class GroupCreationTest {
     FirefoxDriver wd;
@@ -24,36 +19,58 @@ public class GroupCreationTest {
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
         wd.get("http://localhost/addressbook/");
+        login("admin", "secret");
+
+    }
+
+
+
+    @Test
+    public void testGroupCreation() {
+        goToPage("groups");
+        initGroupCreation();
+        fillFormNewGroup(new GroupData("test1", "test2", "test3"));
+        submitForm();
+        goToPage("group page");
+    }
+
+    private void login(String name, String password) {
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).sendKeys("\\undefined");
         wd.findElement(By.id("LoginForm")).click();
         wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
+        wd.findElement(By.name("user")).cldear();
+        wd.findElement(By.name("user")).sendKeys(name);
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys("secret");
+        wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-
     }
-    
-    @Test
-    public void testGroupCreation() {
-        wd.findElement(By.linkText("groups")).click();
-        wd.findElement(By.name("new")).click();
+
+    private void submitForm() {
+        wd.findElement(By.name("submit")).click();
+    }
+
+    private void fillFormNewGroup(GroupData groupData) {
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("test1");
+        wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
         wd.findElement(By.name("group_header")).click();
         wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys("test2");
+        wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
         wd.findElement(By.name("group_footer")).click();
         wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys("test3");
-        wd.findElement(By.name("submit")).click();
-        wd.findElement(By.linkText("group page")).click();
+        wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
-    
+
+    private void initGroupCreation() {
+        wd.findElement(By.name("new")).click();
+    }
+
+    private void goToPage(String name) {
+        wd.findElement(By.linkText(name)).click();
+    }
+
     @AfterMethod
     public void tearDown() {
         wd.quit();
