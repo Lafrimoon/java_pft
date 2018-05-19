@@ -26,12 +26,32 @@ public class ContactHelper extends HelperBase{
         click(By.name("selected[]"));
     }
 
-
-    public void initDeleteContact() {
-        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-    }
-
     public void acceptDialogContactDelete() {
         wd.switchTo().alert().accept();
     }
+
+  //действия на странице контакта
+    //TODO: на нижней кнопке delete на странице контакта, name=update, это имя стиля или бага?
+    public void initUpdateContact() {
+        click(By.name("update"));
+    }
+    //страница контакта в режиме "просмотр"
+    public void initDeleteFromContactPage() {
+        click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+    }
+    public void goToEditContactFromContactPage() {
+        click(By.name("modifiy"));
+    }
+
+  //действия на главной странице
+    public void initDeleteContactFromMainTable() {
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    }
+    public void goToViewContact() { //клик по иконке "человечек" - переход на просмотр контакта
+        click(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Details']"));
+    }
+    public void goToEditContactFromMainTable() { //клик по иконке "карандаш" - переход на редактирование контакта
+        click(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Edit']"));
+    }
+
 }
