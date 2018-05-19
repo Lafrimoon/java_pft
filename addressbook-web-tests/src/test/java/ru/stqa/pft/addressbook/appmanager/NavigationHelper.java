@@ -12,4 +12,11 @@ public class NavigationHelper extends HelperBase {
     public void goToPageGroups() {
         click(By.linkText("groups"));
     }
+
+    public void goToPageHome() {
+        click(By.linkText("home"));
+    }
+    public void goToPageNewContact() {
+        click(By.linkText("add new"));
+    }
 }
