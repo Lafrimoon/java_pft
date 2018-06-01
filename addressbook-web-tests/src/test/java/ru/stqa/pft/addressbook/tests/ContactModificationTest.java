@@ -11,7 +11,7 @@ public class ContactModificationTest extends TestBase {
     public void testContactModificationFromTable() {
         app.getNavigationHelper().goToPageHome();
         app.getContactHelper().goToEditContactFromMainTable();
-        app.getContactHelper().fillFormContact(new ContactData("TESTNAME", "TESTMIDDLE", "TESTLASTNAME", "TESTADDRESS", "222-22-22"));
+        app.getContactHelper().fillFormContact(new ContactData("TESTNAME", "TESTMIDDLE", "TESTLASTNAME", "TESTADDRESS", "222-22-22", null), false);
         app.getContactHelper().initUpdateContact();
         app.getNavigationHelper().goToPageHome();
 
@@ -22,7 +22,7 @@ public class ContactModificationTest extends TestBase {
         app.getNavigationHelper().goToPageHome();
         app.getContactHelper().goToViewContact();
         app.getContactHelper().goToEditContactFromContactPage();
-        app.getContactHelper().fillFormContact(new ContactData("TestName", "TestMiddle", "TestLastname", "TestAddress", "333-33-33"));
+        app.getContactHelper().fillFormContact(new ContactData("TestName", "TestMiddle", "TestLastname", "TestAddress", "333-33-33", null), false);
         app.getContactHelper().initUpdateContact();
         app.getNavigationHelper().goToPageHome();
 
