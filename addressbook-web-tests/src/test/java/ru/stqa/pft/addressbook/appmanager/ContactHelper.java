@@ -66,4 +66,12 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Edit']"));
     }
 
+    public void createContact(ContactData contactData, boolean creation) {
+        fillFormContact(contactData, creation);
+        submitContactCreation();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
