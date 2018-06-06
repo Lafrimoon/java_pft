@@ -6,12 +6,11 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
-public class GroupDeleteTest extends TestBase{
+public class GroupDeleteTest extends TestBase {
     @Test
     public void testGroupDelete() {
         app.getNavigationHelper().goToPageGroups();
-        if (! app.getGroupHelper().isThereAGroup())
-        {
+        if (!app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("test1", null, null));
         }
         List<GroupData> before = app.getGroupHelper().getGroupList();
@@ -21,7 +20,11 @@ public class GroupDeleteTest extends TestBase{
         app.getGroupHelper().returnToPageGroups();
         List<GroupData> after = app.getGroupHelper().getGroupList();
 //        int after = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(after.size(), before.size() -1);
+        Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before, after);
+
     }
 
 }
