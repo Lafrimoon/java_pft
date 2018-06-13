@@ -28,6 +28,9 @@ public class GroupHelper extends HelperBase {
         click(By.name("new"));
     }
 
+
+
+
     public void returnToPageGroups() {
         click(By.linkText("group page"));
     }
@@ -56,6 +59,14 @@ public class GroupHelper extends HelperBase {
 
     }
 
+    public void modifyGroup(int index, GroupData group) {
+        selectGroup(index);
+        initGroupModification();
+        fillFormGroup(group);
+        submitGroupModification();
+        returnToPageGroups();
+    }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -78,4 +89,5 @@ public class GroupHelper extends HelperBase {
 
         return groups;
     }
+
 }

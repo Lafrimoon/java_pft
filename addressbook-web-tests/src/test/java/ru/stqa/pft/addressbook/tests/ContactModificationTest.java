@@ -9,9 +9,8 @@ import java.util.List;
 
 public class ContactModificationTest extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testContactModificationFromTable() {
-        int index = 2;
 
         app.getNavigationHelper().goToPageHome();
         if (! app.getContactHelper().isThereAContact())
@@ -21,15 +20,16 @@ public class ContactModificationTest extends TestBase {
             app.getNavigationHelper().goToPageHome();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().goToEditContactFromMainTable(before.size() - index);
-        ContactData contact = new ContactData(before.get(before.size() - index).getId(), "TESTNAME", "TESTMIDDLE", "TESTLASTNAME", "TESTADDRESS", "222-22-22", null);
+        int index = before.size() - 1;
+        app.getContactHelper().goToEditContactFromMainTable(index);
+        ContactData contact = new ContactData(before.get(index).getId(), "TESTNAME", "TESTMIDDLE", "TESTLASTNAME", "TESTADDRESS", "222-22-22", null);
         app.getContactHelper().fillFormContact(contact, false);
         app.getContactHelper().initUpdateContact();
         app.getNavigationHelper().goToPageHome();
 
         List<ContactData> after = app.getContactHelper().getContactList();
 
-        before.remove(before.size() - index);
+        before.remove(index);
         before.add(contact);
 
         Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
@@ -41,10 +41,8 @@ public class ContactModificationTest extends TestBase {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void testContactModificationFromContactPage() {
-        int index = 1;
-
         app.getNavigationHelper().goToPageHome();
         if (! app.getContactHelper().isThereAContact())
         {
@@ -53,16 +51,17 @@ public class ContactModificationTest extends TestBase {
             app.getNavigationHelper().goToPageHome();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().goToViewContact(before.size() - index);
+        int index = before.size() - 1;
+        app.getContactHelper().goToViewContact(index);
         app.getContactHelper().goToEditContactFromContactPage();
-        ContactData contact = new ContactData(before.get(before.size() - index).getId(), "TestName", "TestMiddle", "TestLastname", "TestAddress", "333-33-33", null);
+        ContactData contact = new ContactData(before.get(index).getId(), "TestName", "TestMiddle", "TestLastname", "TestAddress", "333-33-33", null);
         app.getContactHelper().fillFormContact(contact, false);
         app.getContactHelper().initUpdateContact();
         app.getNavigationHelper().goToPageHome();
 
         List<ContactData> after = app.getContactHelper().getContactList();
 
-        before.remove(before.size() - index);
+        before.remove(index);
         before.add(contact);
 
         Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
