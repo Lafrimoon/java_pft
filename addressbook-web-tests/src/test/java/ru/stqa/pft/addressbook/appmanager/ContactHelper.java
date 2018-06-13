@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -63,11 +62,13 @@ public class ContactHelper extends HelperBase{
     public void initDeleteContactFromMainTable() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     }
-    public void goToViewContact() { //клик по иконке "человечек" - переход на просмотр контакта
-        click(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Details']"));
+    public void goToViewContact(int index) { //клик по иконке "человечек" - переход на просмотр контакта
+        wd.findElements(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Details']")).get(index).click();
+        //click(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Details']"));
     }
-    public void goToEditContactFromMainTable() { //клик по иконке "карандаш" - переход на редактирование контакта
-        click(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Edit']"));
+    public void goToEditContactFromMainTable(int index) { //клик по иконке "карандаш" - переход на редактирование контакта
+        wd.findElements(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Edit']")).get(index).click();
+        //click(By.xpath("//table[@id='maintable']/tbody//a/img[@title='Edit']"));
     }
 
     public void createContact(ContactData contactData, boolean creation) {
@@ -87,8 +88,10 @@ public class ContactHelper extends HelperBase{
         {
             String name = element.findElement(By.xpath("td[3]")).getText();
             String lastname = element.findElement(By.xpath("td[2]")).getText();
+            String addess = element.findElement(By.xpath("td[4]")).getText();
+            String mobilePhone = element.findElement(By.xpath("td[6]")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            ContactData contact = new ContactData(id, name, lastname);
+            ContactData contact = new ContactData(id, name, null, lastname, addess, mobilePhone, null);
             contacts.add(contact);
 
         }

@@ -31,6 +31,7 @@ public class ContactDeleteTest extends TestBase {
 
     @Test
     public void testContactDeleteFromContactPage() {
+        int index = 1;
         app.getNavigationHelper().goToPageHome();
         if (! app.getContactHelper().isThereAContact())
         {
@@ -39,7 +40,7 @@ public class ContactDeleteTest extends TestBase {
             app.getNavigationHelper().goToPageHome();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().goToViewContact();
+        app.getContactHelper().goToViewContact(before.size() - index);
         app.getContactHelper().goToEditContactFromContactPage();
         app.getContactHelper().initDeleteFromContactPage();
         //TODO: не открылось окно подтвеждения удаления
