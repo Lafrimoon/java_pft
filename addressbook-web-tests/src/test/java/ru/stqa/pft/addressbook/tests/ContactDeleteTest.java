@@ -10,18 +10,18 @@ public class ContactDeleteTest extends TestBase {
 
     @Test(enabled = false)
     public void testContactDelete() {
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
         if (! app.getContactHelper().isThereAContact())
         {
-            app.getNavigationHelper().goToPageNewContact();
+            app.goTo().goToPageNewContact();
             app.getContactHelper().createContact(new ContactData("testname", "testmiddle", "testlastname", "testaddress", "111-11-11", "test1"), true);
-            app.getNavigationHelper().goToPageHome();
+            app.goTo().goToPageHome();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().initDeleteContactFromMainTable();
         app.getContactHelper().acceptDialogContactDelete();
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
         List<ContactData> after = app.getContactHelper().getContactList();
 
         before.remove(before.size() - 1);
@@ -32,19 +32,19 @@ public class ContactDeleteTest extends TestBase {
     @Test(enabled = false)
     public void testContactDeleteFromContactPage() {
         int index = 1;
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
         if (! app.getContactHelper().isThereAContact())
         {
-            app.getNavigationHelper().goToPageNewContact();
+            app.goTo().goToPageNewContact();
             app.getContactHelper().createContact(new ContactData("testname", "testmiddle", "testlastname", "testaddress", "111-11-11", "test1"), true);
-            app.getNavigationHelper().goToPageHome();
+            app.goTo().goToPageHome();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().goToViewContact(before.size() - index);
         app.getContactHelper().goToEditContactFromContactPage();
         app.getContactHelper().initDeleteFromContactPage();
         //TODO: не открылось окно подтвеждения удаления
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
         List<ContactData> after = app.getContactHelper().getContactList();
         before.remove(before.size() - 1);
 

@@ -12,12 +12,12 @@ public class ContactModificationTest extends TestBase {
     @Test(enabled = false)
     public void testContactModificationFromTable() {
 
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
         if (! app.getContactHelper().isThereAContact())
         {
-            app.getNavigationHelper().goToPageNewContact();
+            app.goTo().goToPageNewContact();
             app.getContactHelper().createContact(new ContactData("testname", "testmiddle", "testlastname", "testaddress", "111-11-11", "test1"), true);
-            app.getNavigationHelper().goToPageHome();
+            app.goTo().goToPageHome();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         int index = before.size() - 1;
@@ -25,7 +25,7 @@ public class ContactModificationTest extends TestBase {
         ContactData contact = new ContactData(before.get(index).getId(), "TESTNAME", "TESTMIDDLE", "TESTLASTNAME", "TESTADDRESS", "222-22-22", null);
         app.getContactHelper().fillFormContact(contact, false);
         app.getContactHelper().initUpdateContact();
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
 
         List<ContactData> after = app.getContactHelper().getContactList();
 
@@ -43,12 +43,12 @@ public class ContactModificationTest extends TestBase {
 
     @Test(enabled = false)
     public void testContactModificationFromContactPage() {
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
         if (! app.getContactHelper().isThereAContact())
         {
-            app.getNavigationHelper().goToPageNewContact();
+            app.goTo().goToPageNewContact();
             app.getContactHelper().createContact(new ContactData("testname", "testmiddle", "testlastname", "testaddress", "111-11-11", "test1"), true);
-            app.getNavigationHelper().goToPageHome();
+            app.goTo().goToPageHome();
         }
         List<ContactData> before = app.getContactHelper().getContactList();
         int index = before.size() - 1;
@@ -57,7 +57,7 @@ public class ContactModificationTest extends TestBase {
         ContactData contact = new ContactData(before.get(index).getId(), "TestName", "TestMiddle", "TestLastname", "TestAddress", "333-33-33", null);
         app.getContactHelper().fillFormContact(contact, false);
         app.getContactHelper().initUpdateContact();
-        app.getNavigationHelper().goToPageHome();
+        app.goTo().goToPageHome();
 
         List<ContactData> after = app.getContactHelper().getContactList();
 
